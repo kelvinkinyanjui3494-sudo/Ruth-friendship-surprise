@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friendship Note For Ruth</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    overflow-x:hidden;
+    color:white;
+    position:relative;
+}
+
+/* BACKGROUND PHOTO */
+
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:url('photo1.jpeg') center/cover no-repeat;
+    filter:blur(5px) brightness(0.3);
+    z-index:-2;
+}
+
+/* DARK OVERLAY */
+
+body::after{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.45);
+    z-index:-1;
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    padding:20px;
+    position:relative;
+}
+
+/* TOP CIRCULAR PHOTO */
+
+.profile-photo{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    overflow:hidden;
+    border:6px solid white;
+    box-shadow:0 0 30px rgba(255,255,255,0.6);
+    margin-top:20px;
+    animation: glowPhoto 3s infinite alternate;
+}
+
+.profile-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+@keyframes glowPhoto{
+
+    from{
+        box-shadow:0 0 20px rgba(255,255,255,0.4);
+    }
+
+    to{
+        box-shadow:0 0 40px rgba(255,255,255,0.9);
+    }
+}
+
+/* TITLE */
+
+h1{
+    font-size:65px;
+    color:red;
+    margin-top:25px;
+    margin-bottom:20px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+
+    from{
+        text-shadow:0 0 10px red;
+    }
+
+    to{
+        text-shadow:0 0 30px #ff4d4d;
+    }
+}
+
+/* MESSAGE */
+
+.message{
+    max-width:850px;
+    background:rgba(255,255,255,0.08);
+    padding:35px;
+    border-radius:25px;
+    backdrop-filter:blur(12px);
+    line-height:1.9;
+    font-size:20px;
+    box-shadow:0 0 25px rgba(255,255,255,0.15);
+}
+
+/* PHOTO SLIDESHOW */
+
+.slideshow-container{
+    margin-top:40px;
+    position:relative;
+    width:360px;
+    height:560px;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 0 30px rgba(0,0,0,0.6);
+}
+
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    opacity:0;
+    animation: slideshow 15s infinite;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.slide:nth-child(1){
+    animation-delay:0s;
+}
+
+.slide:nth-child(2){
+    animation-delay:5s;
+}
+
+.slide:nth-child(3){
+    animation-delay:10s;
+}
+
+@keyframes slideshow{
+
+    0%{
+        opacity:0;
+    }
+
+    8%{
+        opacity:1;
+    }
+
+    30%{
+        opacity:1;
+    }
+
+    38%{
+        opacity:0;
+    }
+
+    100%{
+        opacity:0;
+    }
+}
+
+/* GLITTERS */
+
+.glitter{
+    position:fixed;
+    width:6px;
+    height:6px;
+    background:white;
+    border-radius:50%;
+    animation: sparkle 4s linear infinite;
+    opacity:0.8;
+}
+
+@keyframes sparkle{
+
+    0%{
+        transform:translateY(-100px) scale(0.5);
+        opacity:0;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(110vh) scale(1.2);
+        opacity:0;
+    }
+}
+
+/* BALLOONS */
+
+.balloon{
+    position:fixed;
+    bottom:-150px;
+    width:70px;
+    animation: floatUp 12s linear infinite;
+}
+
+@keyframes floatUp{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    100%{
+        transform:translateY(-130vh);
+    }
+}
+
+/* LYRICS */
+
+.lyrics{
+    margin-top:40px;
+    max-width:700px;
+    padding:25px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(8px);
+    font-size:22px;
+    line-height:1.8;
+    color:#f8fafc;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* BUTTON */
+
+.surprise-btn{
+    margin-top:40px;
+    padding:15px 35px;
+    border:none;
+    border-radius:40px;
+    font-size:20px;
+    cursor:pointer;
+    background:#2563eb;
+    color:white;
+    transition:0.4s;
+    box-shadow:0 0 20px rgba(37,99,235,0.5);
+}
+
+.surprise-btn:hover{
+    transform:scale(1.05);
+    background:#3b82f6;
+}
+
+/* VIDEO POPUP */
+
+.video-popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.video-popup video{
+    width:80%;
+    max-width:900px;
+    border-radius:20px;
+}
+
+.close-btn{
+    position:absolute;
+    top:20px;
+    right:30px;
+    font-size:40px;
+    color:white;
+    cursor:pointer;
+}
+
+/* FOOTER */
+
+.footer{
+    margin-top:40px;
+    margin-bottom:40px;
+    font-size:18px;
+    color:#e2e8f0;
+}
+
+.heart{
+    color:red;
+    animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat{
+
+    0%{
+        transform:scale(1);
+    }
+
+    25%{
+        transform:scale(1.2);
+    }
+
+    50%{
+        transform:scale(1);
+    }
+
+    75%{
+        transform:scale(1.2);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- GLITTERS -->
+
+<div class="glitter" style="left:10%; animation-delay:0s;"></div>
+<div class="glitter" style="left:25%; animation-delay:1s;"></div>
+<div class="glitter" style="left:40%; animation-delay:2s;"></div>
+<div class="glitter" style="left:55%; animation-delay:3s;"></div>
+<div class="glitter" style="left:70%; animation-delay:4s;"></div>
+<div class="glitter" style="left:85%; animation-delay:5s;"></div>
+
+<!-- BALLOONS -->
+
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png"
+class="balloon"
+style="left:5%; animation-delay:0s;">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png"
+class="balloon"
+style="left:25%; animation-delay:3s;">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png"
+class="balloon"
+style="left:50%; animation-delay:6s;">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png"
+class="balloon"
+style="left:75%; animation-delay:2s;">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468373.png"
+class="balloon"
+style="left:90%; animation-delay:5s;">
+
+<div class="hero">
+
+    <!-- CIRCULAR PHOTO -->
+
+    <div class="profile-photo">
+        <img src="photo1.jpeg" alt="Ruth">
+    </div>
+
+    <h1>Dear Ruth 💙</h1>
+
+    <div class="message">
+
+        <p>
+            Thank you for accepting to be my friend.
+            Your kindness, smile, and beautiful personality
+            truly make life brighter.
+        </p>
+
+        <br>
+
+        <p>
+            I’m grateful for your friendship and I appreciate
+            every moment of happiness and positivity you bring.
+        </p>
+
+        <br>
+
+        <p>
+            May your smile never fade and may our friendship
+            continue growing stronger every day.
+        </p>
+
+        <br>
+
+        <p>
+            Thank you for being you Ruth 💖
+        </p>
+
+    </div>
+
+    <!-- PHOTO SLIDESHOW -->
+
+    <div class="slideshow-container">
+
+        <div class="slide">
+            <img src="photo1.jpeg" alt="Photo 1">
+        </div>
+
+        <div class="slide">
+            <img src="photo2.jpeg" alt="Photo 2">
+        </div>
+
+        <div class="slide">
+            <img src="photo3.jpeg" alt="Photo 3">
+        </div>
+
+    </div>
+
+    <!-- LYRICS -->
+
+    <div class="lyrics">
+
+        🎵 “You are appreciated more than words can explain,
+        a beautiful soul with a beautiful heart.
+        True friendship like yours is rare,
+        and I’m grateful for every moment.” 💙
+
+    </div>
+
+    <!-- SURPRISE BUTTON -->
+
+    <button class="surprise-btn" onclick="openVideo()">
+        🎬 Click For A Surprise
+    </button>
+
+    <div class="footer">
+        Made with <span class="heart">❤</span> for Ruth
+    </div>
+
+</div>
+
+<!-- VIDEO POPUP -->
+
+<div class="video-popup" id="videoPopup">
+
+    <span class="close-btn" onclick="closeVideo()">✖</span>
+
+    <video controls autoplay>
+        <source src="surprise.mp4.mp4" type="video/mp4">
+    </video>
+
+</div>
+
+<!-- BACKGROUND MUSIC -->
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+function openVideo(){
+    document.getElementById("videoPopup").style.display = "flex";
+}
+
+function closeVideo(){
+    document.getElementById("videoPopup").style.display = "none";
+}
+
+/* AUTO PLAY MUSIC AFTER USER INTERACTION */
+
+document.body.addEventListener("click", function () {
+
+    const music = document.getElementById("bgMusic");
+
+    music.play();
+
+}, { once: true });
+
+</script>
+
+</body>
+</html>
